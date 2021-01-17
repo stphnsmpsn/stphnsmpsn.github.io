@@ -1,3 +1,4 @@
+
 name: GitHub Pages
 
 on:
@@ -11,12 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: SonarQube Scan
-        uses: kitabisa/sonarqube-action@master
-        with:
-          host: ${{ secrets.SONARQUBE_HOST }}
-          login: ${{ secrets.SONARQUBE_TOKEN }} 
-          projectKey: "stphnsmpsn.github.io"
-          projectName: "stphnsmpsn.github.io"
+        run: ./sonar.sh ${{ secrets.SONARQUBE_HOST }} ${{ secrets.SONARQUBE_TOKEN }} 
   build:
     runs-on: self-hosted
     steps:
@@ -27,5 +23,3 @@ jobs:
 
       - name: Deploy GitHub Page
         run: npm run deploy
-    
-        
